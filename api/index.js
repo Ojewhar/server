@@ -19,7 +19,9 @@ app.use(bodyParser.json());
 // Serving uploaded images statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// cors
+app.set("trust proxy", 1);
+
+app.use(helmet());
 app.use(
   cors({
     origin: "*",
@@ -28,8 +30,15 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
-
-// stripe
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 app.use((req, res, next) => {
   if (req.originalUrl.includes("/stripe/webhook")) {
     bodyParser.text({ type: "application/json" })(req, res, next);
@@ -41,6 +50,17 @@ app.use((req, res, next) => {
 //root route
 app.get("/", (req, res) => {
   res.send("App works properly!");
+});
+
+app.use(async (req, res, next) => {
+  if (
+    !!req.headers?.access_token &&
+    req.headers?.access_token !== "undefined" &&
+    req.headers?.access_token !== "null"
+  ) {
+    // Do general verification later (ban, admin, etc.)
+  }
+  next();
 });
 
 //this for route will need for store front, also for admin dashboard
