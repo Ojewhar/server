@@ -20,8 +20,8 @@ app.use(bodyParser.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // use app
-app.set("trust proxy", 1);
-app.use(helmet());
+// app.set("trust proxy", 1);
+// app.use(helmet());
 app.use(
   cors({
     origin: "*",
@@ -31,15 +31,15 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET, POST, PUT, DELETE, OPTIONS"
-//   );
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 app.use((req, res, next) => {
   if (req.originalUrl.includes("/stripe/webhook")) {
     bodyParser.text({ type: "application/json" })(req, res, next);
