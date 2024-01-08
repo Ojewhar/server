@@ -31,7 +31,7 @@ app.use(
 );
 
 //root route
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.send("App works properly!");
 });
 
