@@ -24,7 +24,7 @@ app.set("trust proxy", 1);
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://client-cyan-three.vercel.app/",
+    origin: "https://client-cyan-three.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
     optionsSuccessStatus: 200,
