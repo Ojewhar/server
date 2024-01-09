@@ -4,7 +4,6 @@ const pass = process.env.USER_PASS;
 const jwt = require("jsonwebtoken");
 const PassLessTemp = require("../email-templates/PassLessTemp");
 const JwtTokenDb = require("../../models/JwtTokenDb");
-const UpDocFormOne = require("../../models/UpDocFormOne");
 const Person = require("../../models/PersonSchema");
 
 async function sendLoginLink(req, res) {
