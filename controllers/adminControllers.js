@@ -1,9 +1,8 @@
 const bcrypt = require("bcrypt");
 const AdminUser = require("../models/AdminUser");
-const jwt = require("jsonwebtoken");
 const UpDocFormConsultation = require("../models/UpDocFormConsultation");
 const UpDocFormOne = require("../models/UpDocFormOne");
-const createJwt = require("../auth/createJWT");
+const createJwt = require("../authentication/createJWT");
 
 // Register Doctor And Admin
 const createAdminUser = async (req, res) => {
@@ -45,20 +44,20 @@ const logintAdminUser = async (req, res) => {
   try {
     const adminUser = await AdminUser.findOne({ email: req.body.email });
 
-    // Create JWT
-    const jwt_data = {
-      id: adminUser._id,
-      email: adminUser.email,
-      username: adminUser.username,
-      role: adminUser.role,
-      status: adminUser.status,
-    };
-    const jwt_token = createJwt(jwt_data);
-
     // check already register or not
     if (!adminUser) {
       res.status(404).send({ error: "Please registration first" });
     } else {
+      // Create JWT
+      const jwt_data = {
+        id: adminUser._id,
+        email: adminUser.email,
+        username: adminUser.username,
+        role: adminUser.role,
+        status: adminUser.status,
+      };
+      const jwt_token = createJwt(jwt_data);
+
       const isPassOk = await bcrypt.compare(
         req.body.password,
         adminUser.password
