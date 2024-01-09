@@ -14,6 +14,7 @@ const path = require("path");
 connectDB();
 // store app in express function
 const app = express();
+app.use(express.json());
 // Serving uploaded images statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -31,7 +32,7 @@ app.use(
 );
 
 //root route
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   res.send("App works properly!");
 });
 
