@@ -2,8 +2,7 @@ const bcrypt = require("bcrypt");
 const AdminUser = require("../models/AdminUser");
 const UpDocFormConsultation = require("../models/UpDocFormConsultation");
 const UpDocFormOne = require("../models/UpDocFormOne");
-const createJwt = require("../authentication/createJWT");
-
+const jwt = require("jsonwebtoken");
 // Register Doctor And Admin
 const createAdminUser = async (req, res) => {
   try {
@@ -56,8 +55,9 @@ const logintAdminUser = async (req, res) => {
         role: adminUser.role,
         status: adminUser.status,
       };
-      const jwt_token = createJwt(jwt_data);
-
+      const jwt_token = jwt.sign({ user: jwt_data }, process.env.JWT_SECRET, {
+        expiresIn: "12h", // Token expiration time
+      });
       const isPassOk = await bcrypt.compare(
         req.body.password,
         adminUser.password
