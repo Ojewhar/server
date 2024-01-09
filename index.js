@@ -5,7 +5,7 @@ const app = express();
 dotenv.config();
 app.use(express.json());
 
-app.get("/", (res, req) => {
+app.get("/", (req, res) => {
   res.end("App working fine");
 });
 
