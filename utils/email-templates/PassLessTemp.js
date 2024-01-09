@@ -1,3 +1,5 @@
+const { BASE_URL_CLIENT } = require("../../config/base-url");
+
 function PassLessTemp(JWT_TOKEN) {
   return `
 	<div style="background-color:#fff;margin:0;padding:0">
@@ -104,7 +106,7 @@ function PassLessTemp(JWT_TOKEN) {
 													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
 														<tbody><tr>
 															<td style="padding-left:20px;padding-right:20px;text-align:center">
-																<div align="center"><a href="${process.env.LIVE_DOMAIN}/verifylogin/${JWT_TOKEN}"><span style="padding-left:40px;padding-right:40px;font-size:16px;display:inline-block;letter-spacing:normal;background:#e57e2c;color:#fff;border-radius: 30px;padding-top: 6px;padding-bottom: 6px;"><span style="word-break:break-word;line-height:32px"><strong>Login Now</strong></span></span></a></div>
+																<div align="center"><a href="${BASE_URL_CLIENT}/verifylogin/${JWT_TOKEN}"><span style="padding-left:40px;padding-right:40px;font-size:16px;display:inline-block;letter-spacing:normal;background:#e57e2c;color:#fff;border-radius: 30px;padding-top: 6px;padding-bottom: 6px;"><span style="word-break:break-word;line-height:32px"><strong>Login Now</strong></span></span></a></div>
 															</td>
 														</tr>
 													</tbody></table>
