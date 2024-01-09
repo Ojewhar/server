@@ -3,7 +3,7 @@ const AdminUser = require("../models/AdminUser");
 const jwt = require("jsonwebtoken");
 const UpDocFormConsultation = require("../models/UpDocFormConsultation");
 const UpDocFormOne = require("../models/UpDocFormOne");
-const createJwt = require("../security/createJWT");
+const createJwt = require("../auth/createJWT");
 
 // Register Doctor And Admin
 const createAdminUser = async (req, res) => {
