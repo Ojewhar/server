@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.end("App working fine");
 });
 
-app.post("/", (req, res) => {
+app.post("/api", (req, res) => {
   res.end("App working fine");
 });
 
