@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 app.get("/api", (req, res) => {
   res.send("App works properly!");
 });
-//this for route will need for store front, also for admin dashboard
+
 app.use("/api/form", formRoutes);
 app.use("/api/stripe", stripeRoutes);
 app.use("/api/admin", adminRoutes);
