@@ -1,9 +1,4 @@
 {
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
-    }
-  ]
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node" }]
 }
