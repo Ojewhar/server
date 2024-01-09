@@ -1,21 +1,19 @@
+const dotenv = require("dotenv");
 const express = require("express");
-
 const app = express();
 
-require("dotenv").config();
-
+dotenv.config();
 app.use(express.json());
 
-const connectDB = require("./config/db");
-
-connectDB();
-
-app.get("/", (req, res) => {
-  res.end("App work fine");
+app.get("/", (res, req) => {
+  try {
+    res.status(200).json("App working fine");
+  } catch (error) {
+    res.status(400).json("Server error");
+  }
 });
 
-const PORT = process.env.PORT;
-
+const PORT = process.env.PORT ? process.env.PORT : 5000;
 app.listen(PORT, () => {
-  console.log("Server is running on port " + PORT);
+  console.log(`Server is running ${PORT}`);
 });
