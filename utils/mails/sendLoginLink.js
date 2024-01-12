@@ -25,7 +25,7 @@ async function sendLoginLink(req, res) {
           },
           process.env.JWT_SECRET,
           {
-            expiresIn: "12h", // Token expiration time
+            expiresIn: "1d", // Token expiration time
           }
         );
 
@@ -51,7 +51,7 @@ async function sendLoginLink(req, res) {
         const formattedDate = currentDate.toLocaleString("en-US", options);
 
         const mailOptions = {
-          from: adminemail,
+          from: "Updoc " + "<" + adminemail + ">",
           to: req.body.email,
           subject: "Login to your updoc Patient Portal - " + formattedDate,
           html: PassLessTemp(JWT_TOKEN),

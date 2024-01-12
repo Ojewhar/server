@@ -11,6 +11,7 @@ const verifyLogin = require("../utils/mails/verifyLogin");
 router.post("/addPersonInfo", addPersonInfo);
 router.get("/getAllPersonsInfo", authGuard, getAllPersonsInfo);
 router.post("/verifyLogin", verifyLogin);
+router.post("/sendEmail", sendLoginLink);
 router.post("/sendLoginLink", sendLoginLink);
 
 module.exports = router;
