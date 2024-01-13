@@ -9,7 +9,7 @@ const verifyLogin = require("../utils/mails/verifyLogin");
 
 // define routers
 router.post("/addPersonInfo", addPersonInfo);
-router.get("/getAllPersonsInfo", authGuard, getAllPersonsInfo);
+router.get("/getAllPersonsInfo", getAllPersonsInfo);
 router.post("/verifyLogin", verifyLogin);
 router.post("/sendEmail", sendLoginLink);
 router.post("/sendLoginLink", sendLoginLink);
