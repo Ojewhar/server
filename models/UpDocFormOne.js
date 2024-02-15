@@ -4,28 +4,16 @@ const UpDocFormOneSchema = new mongoose.Schema(
     formName: {
       type: String,
     },
-    leave: {
+    agree: {
       type: String,
     },
-    seeking: {
-      type: String,
-    },
-    leavereason: {
+    requireAcertificate: {
       type: String,
     },
     fromDate: {
       type: String,
     },
     toDate: {
-      type: String,
-    },
-    detailSymptoms: {
-      type: String,
-    },
-    optionalFileFirstForm: {
-      type: String,
-    },
-    attachID: {
       type: String,
     },
     dateOfBirth: {
@@ -55,13 +43,16 @@ const UpDocFormOneSchema = new mongoose.Schema(
     firstFormSuburb: {
       type: String,
     },
-    firstFormCheckoutOption: {
+    switablityForCirtificate: {
+      type: String,
+    },
+    ifOther: {
       type: String,
     },
     status: {
       type: String,
       enum: ["active", "pending", "canceled"],
-      default: "pending",
+      default: "active",
     },
   },
   { timestamps: true }

@@ -4,14 +4,14 @@ const pass = process.env.USER_PASS;
 const jwt = require("jsonwebtoken");
 const PassLessTemp = require("../email-templates/PassLessTemp");
 const JwtTokenDb = require("../../models/JwtTokenDb");
-const Person = require("../../models/PersonSchema");
+const UserModel = require("../../models/UserModel");
 
 async function sendLoginLink(req, res) {
   try {
     if (!req.body.email) {
       res.status(404).json("Email not define");
     } else {
-      const isSubscribe = await Person.findOne({ email: req.body.email });
+      const isSubscribe = await UserModel.findOne({ email: req.body.email });
 
       if (!isSubscribe) {
         res.status(409).json("You are not registerd");
@@ -51,9 +51,9 @@ async function sendLoginLink(req, res) {
         const formattedDate = currentDate.toLocaleString("en-US", options);
 
         const mailOptions = {
-          from: "Updoc " + "<" + adminemail + ">",
+          from: "Certnow " + "<" + adminemail + ">",
           to: req.body.email,
-          subject: "Login to your updoc Patient Portal - " + formattedDate,
+          subject: "Login to your certnow patient portal - " + formattedDate,
           html: PassLessTemp(JWT_TOKEN),
         };
 

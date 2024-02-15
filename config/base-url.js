@@ -1,7 +1,7 @@
 const BASE_URL_CLIENT =
   process.env.NODE_ENV === "production"
-    ? "https://client-cyan-three.vercel.app/"
-    : "http://localhost:3000/";
+    ? "https://www.patient.certnow.com.au"
+    : "http://localhost:3000";
 
 // server url
 const BASE_URL_SERVER =

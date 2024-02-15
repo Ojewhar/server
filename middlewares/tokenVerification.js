@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const Person = require("../models/PersonSchema");
 const secretKey = process.env.JWT_SECRET;
 const admin_email = process.env.ADMIN_EMAIL;
 
