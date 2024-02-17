@@ -41,6 +41,7 @@ const getAllUsers = async (req, res) => {
     throw new Error("Error fetching form one data");
   }
 };
+
 // Login User
 const loginUser = async (req, res) => {
   try {
@@ -79,8 +80,8 @@ const updateUserById = async (req, res) => {
     const { id } = req.params;
     const updateUser = await User.findById(id);
 
-    if (!adminUser) {
-      res.status(404).send({ error: "Admin user not found" });
+    if (!updateUser) {
+      res.status(404).send({ message: "User not found" });
     } else {
       if (req.body.password) {
         req.body.password = await bcrypt.hash(req.body.password, 10);
@@ -91,7 +92,7 @@ const updateUserById = async (req, res) => {
       res.send(adminUser);
     }
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ message: "Update user server error" });
   }
 };
 

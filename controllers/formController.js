@@ -139,22 +139,53 @@ const getAllFormData = async (req, res) => {
     throw new Error("Error fetching form one data");
   }
 };
-// Function to get form one data based on user email
 
+// Function to get form one data based on user email
 const getFormOneData = async (req, res) => {
   try {
-    // Now, fetch form one data based on user details
-    const userInfos = await UpDocFormOne.findOne({
-      firstFormEmail: email,
-    });
+    const { id } = req.params;
 
-    if (!userInfos) {
-      res.status(404).json("You are not registerd user");
+    const form = await UpDocFormOne.findById(id);
+    if (!form) {
+      res.status(404).json("This patient form in not avaiable now");
     } else {
-      res.status(200).json(userInfos);
+      res.status(200).json(form);
     }
   } catch (error) {
     throw new Error("Error fetching form one data");
+  }
+};
+
+// update status by admin
+const updateSinglePatientForm = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const form = await UpDocFormOne.findById(id);
+    if (!form) {
+      return res
+        .status(404)
+        .json({ message: "This patient form is not available now" });
+    }
+
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({ message: "Status is required" });
+    }
+
+    form.status = status;
+
+    if (status === "canceled") {
+      form.password = ""; // Remove password only if status is canceled
+    }
+
+    await form.save();
+
+    return res.status(200).json({ message: `Your application is ${status}` });
+  } catch (error) {
+    console.error("Error updating form:", error);
+    return res.status(500).json({ message: "Error updating form" });
   }
 };
 
@@ -162,4 +193,5 @@ module.exports = {
   createFormOne,
   getFormOneData,
   getAllFormData,
+  updateSinglePatientForm,
 };
