@@ -49,9 +49,13 @@ const UpDocFormOneSchema = new mongoose.Schema(
     ifOther: {
       type: String,
     },
+    payment: {
+      type: {},
+      default: {},
+    },
     status: {
       type: String,
-      enum: ["active", "pending", "canceled"],
+      enum: ["active", "pending", "canceled", "completed"],
       default: "active",
     },
   },

@@ -6,6 +6,6 @@ const {
 const { authGuard } = require("../middlewares/tokenVerification");
 
 router.post("/certnowPaymentStripe", authGuard, certnowPaymentStripe);
-router.post("/cancel-subscription", cancelSubscribeStipe);
+router.post("/cancel-subscription", authGuard, cancelSubscribeStipe);
 
 module.exports = router;

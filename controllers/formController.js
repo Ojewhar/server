@@ -85,7 +85,7 @@ const createFormOne = async (req, res) => {
 
     const alreadyRegistered = await UserModel.findOne({
       email: firstFormEmail,
-    });
+    }).select("-password");
 
     const formoneData =
       ifOther !== "" ? { ...userData, status: "pending" } : userData;
@@ -123,6 +123,7 @@ const createFormOne = async (req, res) => {
     res.status(500).json({
       message: "Internal Server Error",
     });
+    console.log(error);
   }
 };
 
@@ -160,7 +161,6 @@ const getFormOneData = async (req, res) => {
 const updateSinglePatientForm = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     const form = await UpDocFormOne.findById(id);
     if (!form) {
       return res
@@ -168,7 +168,7 @@ const updateSinglePatientForm = async (req, res) => {
         .json({ message: "This patient form is not available now" });
     }
 
-    const { status } = req.body;
+    const status = req.body.status;
 
     if (!status) {
       return res.status(400).json({ message: "Status is required" });

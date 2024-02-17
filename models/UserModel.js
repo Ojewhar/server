@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const UpDocFormOne = require("./UpDocFormOne");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -17,6 +18,9 @@ const UserSchema = new mongoose.Schema(
     mobile: {
       type: String,
     },
+    address: {
+      type: String,
+    },
     role: {
       type: String,
       enum: ["admin", "doctor", "patient"],
@@ -31,5 +35,12 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+UserSchema.pre("remove", async function (next) {
+  try {
+    await UpDocFormOne.deleteMany({ _id: { $in: this.forms } });
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = mongoose.model("User", UserSchema);

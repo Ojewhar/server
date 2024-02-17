@@ -1,9 +1,10 @@
 const { BASE_URL_CLIENT } = require("../config/base-url");
+const UpDocFormOne = require("../models/UpDocFormOne");
 
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const certnowPaymentStripe = async (req, res) => {
   const storeItems = new Map([
-    [1, { priceInCent: 4990, name: "Medical Certificate" }], // this is in cents
+    [1, { priceInCent: 2900, name: "Medical Certificate" }], // this is in cents
     // [2, { priceInCent: 4000, name: "Online Prescription" }],
   ]);
   try {
@@ -14,7 +15,7 @@ const certnowPaymentStripe = async (req, res) => {
         const storeItem = storeItems.get(item.id);
         return {
           price_data: {
-            currency: "usd",
+            currency: "aud",
             product_data: {
               name: storeItem.name,
             },
@@ -23,13 +24,16 @@ const certnowPaymentStripe = async (req, res) => {
           quantity: item.quantity,
         };
       }),
-      success_url: `${BASE_URL_CLIENT}`,
-      cancel_url: `${BASE_URL_CLIENT}/form`,
+      success_url: `${BASE_URL_CLIENT}/dashboard/patient`,
+      cancel_url: `${BASE_URL_CLIENT}/dashboard/patient`,
     });
+    const id = req.body.id;
+    const formOne = await UpDocFormOne.findById(id);
+    formOne.payment = session;
+    await formOne.save();
 
     res.status(200).json(session);
   } catch (error) {
-    console.error(error);
     res.status(500).send("Internal Server Error");
   }
 };

@@ -3,26 +3,23 @@ const adminemail = process.env.USER_MAIL;
 const pass = process.env.USER_PASS;
 const jwt = require("jsonwebtoken");
 const PassLessTemp = require("../email-templates/PassLessTemp");
-const JwtTokenDb = require("../../models/JwtTokenDb");
 const UserModel = require("../../models/UserModel");
+const JwtTokenDb = require("../../models/JwtTokenDb");
 
 async function sendLoginLink(req, res) {
   try {
     if (!req.body.email) {
       res.status(404).json("Email not define");
     } else {
-      const isSubscribe = await UserModel.findOne({ email: req.body.email });
+      const isSubscribe = await UserModel.findOne({
+        email: req.body.email,
+      }).select("-password");
 
       if (!isSubscribe) {
         res.status(409).json("You are not registerd");
       } else {
         const JWT_TOKEN = jwt.sign(
-          {
-            id: isSubscribe._id,
-            name: isSubscribe.name,
-            email: isSubscribe.email,
-            role: isSubscribe.role,
-          },
+          { user: isSubscribe },
           process.env.JWT_SECRET,
           {
             expiresIn: "1d", // Token expiration time

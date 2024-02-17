@@ -5,13 +5,16 @@ const {
   getAllUsers,
   deleteUserById,
   updateUserById,
+  getASingleUser,
+  verifyLogin,
 } = require("../controllers/authControllers");
-const { authGuard } = require("../middlewares/tokenVerification");
+const { authGuard, restrict } = require("../middlewares/tokenVerification");
 
 // define routers
 router.post("/createUser", createUser);
 router.post("/loginUser", loginUser);
-router.get("/getAllUsers", getAllUsers);
+router.get("/getAllUsers", authGuard, restrict(["admin"]), getAllUsers);
+router.get("/getASingleUser", authGuard, getASingleUser);
 router.delete("/deleteUserById/:id", authGuard, deleteUserById);
 router.put("/updateUserById/:id", authGuard, updateUserById);
 

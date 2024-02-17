@@ -18,6 +18,7 @@ const createUser = async (req, res) => {
         email,
         password: hashedPassword,
         mobile,
+        address: `${req.body.firstFormStreet}, .${req.body.firstFormSuburb}, ${req.body.firstFormPost}, ${req.body.firstFormState}`,
       });
 
       await adminUser.save();
@@ -42,6 +43,23 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getASingleUser = async (req, res) => {
+  try {
+    const id = req.user._id;
+    const user = await UserModel.findById(id)
+      .select("-password")
+      .populate("forms");
+
+    if (!user) {
+      res.status(404).json("You are not registerd user");
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    throw new Error("Error fetching form one data");
+  }
+};
+
 // Login User
 const loginUser = async (req, res) => {
   try {
@@ -50,23 +68,34 @@ const loginUser = async (req, res) => {
     if (!user) {
       res.status(404).send({ error: "Please register first" });
     } else {
-      const isPassOk = await bcrypt.compare(req.body.password, user.password);
-
-      if (isPassOk) {
-        const jwtuser = await UserModel.findOne({
-          email: req.body.email,
-        }).select("-password");
-
-        const jwt_token = jwt.sign({ user: jwtuser }, process.env.JWT_SECRET, {
-          expiresIn: "10d", // Token expiration time
-        });
-
-        res.status(200).json({
-          jwt: jwt_token,
-          message: "Login successful",
+      if (user.role === "patient") {
+        res.status(404).json({
+          message:
+            "Sorry you dont have permission to login this way please try with link",
         });
       } else {
-        res.status(404).json({ error: "Authentication Error" });
+        const isPassOk = await bcrypt.compare(req.body.password, user.password);
+
+        if (isPassOk) {
+          const jwtuser = await UserModel.findOne({
+            email: req.body.email,
+          }).select("-password");
+
+          const jwt_token = jwt.sign(
+            { user: jwtuser },
+            process.env.JWT_SECRET,
+            {
+              expiresIn: "10d", // Token expiration time
+            }
+          );
+
+          res.status(200).json({
+            jwt: jwt_token,
+            message: "Login successful",
+          });
+        } else {
+          res.status(404).json({ error: "Authentication Error" });
+        }
       }
     }
   } catch (error) {
@@ -116,4 +145,5 @@ module.exports = {
   getAllUsers,
   deleteUserById,
   updateUserById,
+  getASingleUser,
 };
