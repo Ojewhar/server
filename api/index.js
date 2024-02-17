@@ -6,16 +6,16 @@ const bodyParser = require("body-parser");
 const { connectDB } = require("../config/db");
 const formRoutes = require("../routes/formRoutes");
 const authRoutes = require("../routes/authRoutes");
-const adminRoutes = require("../routes/adminRoutes");
 const uploadRoutes = require("../routes/uploadRoutes");
 const stripeRoutes = require("../routes/stripeRoutes");
+const mailRoutes = require("../routes/mailRoutes");
 const path = require("path");
 // connet db
 connectDB();
 // store app in express function
 const app = express();
 // Serving uploaded images statically
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use(express.static("/uploads"));
 
 dotenv.config();
 app.use(express.json());
@@ -31,7 +31,7 @@ app.get("/api", (req, res) => {
 
 app.use("/api/form", formRoutes);
 app.use("/api/stripe", stripeRoutes);
-app.use("/api/admin", adminRoutes);
+app.use("/api/mail", mailRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/fileupload", uploadRoutes);
 

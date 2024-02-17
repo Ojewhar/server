@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const {
-  subscribeStipre,
   cancelSubscribeStipe,
+  certnowPaymentStripe,
 } = require("../controllers/stripeControllers");
+const { authGuard } = require("../middlewares/tokenVerification");
 
-router.post("/subscribe-stripe", subscribeStipre);
-router.post("/cancel-subscription", cancelSubscribeStipe);
+router.post("/certnowPaymentStripe", authGuard, certnowPaymentStripe);
+router.post("/cancel-subscription", authGuard, cancelSubscribeStipe);
 
 module.exports = router;

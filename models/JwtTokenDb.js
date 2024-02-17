@@ -9,7 +9,7 @@ const JwtTokenDbSchema = new mongoose.Schema(
     expiresAt: {
       type: Date,
       default: Date.now() + 5 * 60 * 1000, // Set expiration time to 1 hour from now
-      index: { expires: "5m" }, // This index will automatically delete the document after 1 hour
+      index: { expires: "1d" }, // This index will automatically delete the document after 1 hour
     },
   },
   {

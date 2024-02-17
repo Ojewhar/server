@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const Person = require("../models/PersonSchema");
+const UserModel = require("../models/UserModel");
 const secretKey = process.env.JWT_SECRET;
 const admin_email = process.env.ADMIN_EMAIL;
 
@@ -16,7 +16,7 @@ const authGuard = (req, res, next) => {
 
       const decoded = jwt.verify(token, secretKey);
 
-      req.user = decoded;
+      req.user = decoded.user;
 
       next();
     }
@@ -30,17 +30,9 @@ const authGuard = (req, res, next) => {
 };
 
 const restrict = (roles) => async (req, res, next) => {
-  const userId = req.user.id;
-  let user;
+  const userId = req.user._id;
 
-  const patient = await Person.findById(userId);
-  const admin = await Person.findById(userId);
-  if (patient) {
-    user = patient;
-  }
-  if (admin) {
-    user = admin;
-  }
+  const user = await UserModel.findById(userId);
 
   if (roles.includes(user.role)) {
     next();

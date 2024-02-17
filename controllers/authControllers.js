@@ -1,35 +1,149 @@
-const Person = require("../models/PersonSchema");
+const User = require("../models/UserModel");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const UserModel = require("../models/UserModel");
 
-const addPersonInfo = async (req, res) => {
+const createUser = async (req, res) => {
   try {
-    let person = await Person.findOne({ email: req.body.email });
+    const { name, email, password, mobile } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (!person) {
-      person = new Person(req.body);
-      await person.save();
-      res.status(200).json({ message: "Person created successfully" });
+    const isUser = await AdminUser.findOne({ email });
+    if (isUser) {
+      res.status(409).json({ message: "Already Registered" });
     } else {
-      person.formInfo.push({
-        id: req.body.formInfo.id,
-        formName: req.body.formInfo.formName,
+      // registered new user if not already registered
+      const adminUser = new AdminUser({
+        name,
+        email,
+        password: hashedPassword,
+        mobile,
+        address: `${req.body.firstFormStreet}, .${req.body.firstFormSuburb}, ${req.body.firstFormPost}, ${req.body.firstFormState}`,
       });
-      await person.save();
-      res.status(200).json({ message: "Form data added successfully" });
+
+      await adminUser.save();
+      res.status(200).json({ message: "Registered Successfull" });
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(400).send(error);
   }
 };
 
-// Get all user data
-const getAllPersonsInfo = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
-    const allPersons = await Person.find();
-    res.status(200).json(allPersons);
+    const users = await User.find();
+
+    if (!users) {
+      res.status(404).json("You are not registerd user");
+    } else {
+      res.status(200).json(users);
+    }
   } catch (error) {
-    res.status(500).json({ message: "Internal Server Error" });
+    throw new Error("Error fetching form one data");
   }
 };
 
-module.exports = { addPersonInfo, getAllPersonsInfo };
+const getASingleUser = async (req, res) => {
+  try {
+    const id = req.user._id;
+    const user = await UserModel.findById(id)
+      .select("-password")
+      .populate("forms");
+
+    if (!user) {
+      res.status(404).json("You are not registerd user");
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    throw new Error("Error fetching form one data");
+  }
+};
+
+// Login User
+const loginUser = async (req, res) => {
+  try {
+    const user = await UserModel.findOne({ email: req.body.email });
+
+    if (!user) {
+      res.status(404).send({ error: "Please register first" });
+    } else {
+      if (user.role === "patient") {
+        res.status(404).json({
+          message:
+            "Sorry you dont have permission to login this way please try with link",
+        });
+      } else {
+        const isPassOk = await bcrypt.compare(req.body.password, user.password);
+
+        if (isPassOk) {
+          const jwtuser = await UserModel.findOne({
+            email: req.body.email,
+          }).select("-password");
+
+          const jwt_token = jwt.sign(
+            { user: jwtuser },
+            process.env.JWT_SECRET,
+            {
+              expiresIn: "10d", // Token expiration time
+            }
+          );
+
+          res.status(200).json({
+            jwt: jwt_token,
+            message: "Login successful",
+          });
+        } else {
+          res.status(404).json({ error: "Authentication Error" });
+        }
+      }
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Authentication Error" });
+  }
+};
+
+// Update Admin And Doctor Info
+const updateUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateUser = await User.findById(id);
+
+    if (!updateUser) {
+      res.status(404).send({ message: "User not found" });
+    } else {
+      if (req.body.password) {
+        req.body.password = await bcrypt.hash(req.body.password, 10);
+      }
+      const adminUser = await User.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+      res.send(adminUser);
+    }
+  } catch (error) {
+    res.status(400).send({ message: "Update user server error" });
+  }
+};
+
+// Delete Admin And Doctor Info
+
+const deleteUserById = async (req, res) => {
+  try {
+    const adminUser = await User.findByIdAndDelete(req.params.id);
+    if (!adminUser) {
+      return res.status(404).send({ error: "Admin user not found" });
+    }
+    res.send(adminUser);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+module.exports = {
+  createUser,
+  loginUser,
+  getAllUsers,
+  deleteUserById,
+  updateUserById,
+  getASingleUser,
+};

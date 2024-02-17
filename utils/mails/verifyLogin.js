@@ -8,10 +8,9 @@ const verifyLogin = async (req, res) => {
     if (!isToken) {
       res.status(404).json("Token is expired please try again");
     } else {
-      res.status(200).json("Verify successfull");
-
       // Delete the token from the database after verification
       await JwtTokenDb.findOneAndDelete({ token: token });
+      res.status(200).json("Verify successfull");
     }
   } catch (error) {
     console.error(error);
