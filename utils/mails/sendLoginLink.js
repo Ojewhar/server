@@ -1,10 +1,11 @@
-const nodemailer = require("nodemailer");
 const adminemail = process.env.USER_MAIL;
-const pass = process.env.USER_PASS;
 const jwt = require("jsonwebtoken");
 const PassLessTemp = require("../email-templates/PassLessTemp");
 const UserModel = require("../../models/UserModel");
 const JwtTokenDb = require("../../models/JwtTokenDb");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const nodemailer = require("nodemailer");
 
 async function sendLoginLink(req, res) {
   try {
@@ -25,15 +26,13 @@ async function sendLoginLink(req, res) {
             expiresIn: "1d", // Token expiration time
           }
         );
-
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
-            user: adminemail,
-            pass: pass,
+            user: process.env.USER_MAIL,
+            pass: process.env.USER_PASS,
           },
         });
-
         const currentDate = new Date();
         const options = {
           day: "numeric",
@@ -53,7 +52,14 @@ async function sendLoginLink(req, res) {
           subject: "Login to your certnow patient portal - " + formattedDate,
           html: PassLessTemp(JWT_TOKEN),
         };
-
+        // const msg = {
+        //   to: req.body.email,
+        //   from: complaintsmail,
+        //   bcc: complaintsmail,
+        //   subject: req.body.subject,
+        //   html: req.body.message,
+        // };
+        //await sgMail.send(mailOptions);
         await transporter.sendMail(mailOptions);
 
         // Save the token in the database

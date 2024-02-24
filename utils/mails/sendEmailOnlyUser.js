@@ -2,8 +2,10 @@ const adminemail = process.env.ADMIN_EMAIL;
 const adminSendEmail = process.env.USER_MAIL;
 const nodemailer = require("nodemailer");
 
-const sendEmailOnlyUser = async ({ toemail, fromemail, subject, message }) => {
+const sendEmailOnlyUser = async (req, res) => {
   try {
+    const { toemail, subject, message } = req.body;
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -20,7 +22,7 @@ const sendEmailOnlyUser = async ({ toemail, fromemail, subject, message }) => {
     };
 
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Please check your email" });
+    res.status(200).json({ message: "Email send successfully" });
   } catch (error) {
     console.log(error);
   }

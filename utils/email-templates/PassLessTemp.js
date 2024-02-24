@@ -7,7 +7,7 @@ function PassLessTemp(JWT_TOKEN) {
 		<tbody>
 			<tr>
 				<td>
-					<table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#684490">
+					<table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#6ca27c">
 						<tbody>
 							<tr>
 								<td>
@@ -18,7 +18,7 @@ function PassLessTemp(JWT_TOKEN) {
 													<table class="m_-2702243168566335182image_block" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
 														<tbody><tr>
 															<td style="width:100%;padding-right:0px;padding-left:0px">
-																<div align="center" style="line-height:10px"><img src="https://ci6.googleusercontent.com/proxy/bzsu5vRmNH6oaIlT5Phg-FcyY7hikBq4NfcU3rzB_JmeB0KNqYihsXErrF5bwLZVYKWRbUQbZ0zpLWLVezvVogtsgtMT9hOXDOcARt2DN_8DDS4OGEgsykRdzDmj9a54Qw4L6Q8hQYdV1gG1mP_xuKaVR8VhvMsRJfFMMwTCcEwatMTci4E=s0-d-e1-ft#https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/BeeProAgency/827497_811470/updoc-logo-white%404x.png" style="height:auto;display:block;border:0;max-width:210px;width:100%" width="210" alt="I'm an image" title="I'm an image" class="CToWUd" data-bit="iit" /></div>
+																<div align="center" style="line-height:10px"><img style="width:150px" src="https://certnow.com.au/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.02834171.png&w=1080&q=75" style="height:auto;display:block;border:0;max-width:210px;width:100%" width="210" alt="I'm an image" title="I'm an image" class="CToWUd" data-bit="iit" /></div>
 															</td>
 														</tr>
 													</tbody></table>
@@ -30,11 +30,11 @@ function PassLessTemp(JWT_TOKEN) {
 							</tr>
 						</tbody>
 					</table>
-					<table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#684490">
+					<table align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#6ca27c">
 						<tbody>
 							<tr>
 								<td>
-									<table class="m_-2702243168566335182row-content m_-2702243168566335182stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="color:#000;background-color:#fff;border-top:25px solid #684490;border-left:15px solid #684490;border-right:15px solid #684490;border-radius:50px 50px 0 0;width:600px;margin:0 auto" width="600">
+									<table class="m_-2702243168566335182row-content m_-2702243168566335182stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="color:#000;background-color:#fff;border-top:25px solid #6ca27c;border-left:15px solid #6ca27c;border-right:15px solid #6ca27c;border-radius:50px 50px 0 0;width:600px;margin:0 auto" width="600">
 										<tbody>
 											<tr>
 												<td class="m_-2702243168566335182column" width="100%" style="text-align:left;font-weight:400;vertical-align:top;border-top:0px;border-right:0px;border-bottom:0px;border-left:0px">
@@ -42,7 +42,7 @@ function PassLessTemp(JWT_TOKEN) {
 													<table class="m_-2702243168566335182image_block" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
 														<tbody><tr>
 															<td style="width:100%;padding-right:0px;padding-left:0px">
-																<div align="center" style="line-height:10px"><img class="m_-2702243168566335182fullWidth CToWUd a6T" src="https://ci5.googleusercontent.com/proxy/qAcpHUXvxoX1ia4e0Vrv_EWywuvMP64irdBlwhLAvc2W8QpcgrIBm7Uv6e2CMjK9-aAU8juNvQpL2Yi9-9DdJzN4cYrqfA1qx0q39IqtOk7sYoVslJA4ppcs_arrkieXutW2YKygQLzLVqboOrvbXeV6PDo_T2M1lQ=s0-d-e1-ft#https://d15k2d11r6t6rl.cloudfront.net/public/users/Integrators/BeeProAgency/827497_811470/20944201.jpg" style="height:auto;display:block;border:0;max-width:390px;width:100%" width="390" alt="I'm an image" title="I'm an image" data-bit="iit" tabindex="0"/><div class="a6S" dir="ltr" style="opacity: 0.01; left: 1036.6px; top: 759.15px;"><div id=":oa" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Download attachment " jslog="91252; u014N:cOuCgd,Kr2w4b,xr6bB; 4:WyIjbXNnLWY6MTc3MzQ5MzI4OTI4MjMwNTg3MCIsbnVsbCxbXV0." data-tooltip-class="a1V" data-tooltip="Download"><div class="akn"><div class="aSK J-J5-Ji aYr"></div></div></div></div></div>
+																<div align="center" style="line-height:10px"><img class="m_-2702243168566335182fullWidth CToWUd a6T" style="width:150px" src="https://certnow.com.au/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.02834171.png&w=1080&q=75" style="height:auto;display:block;border:0;max-width:390px;width:100%" width="390" alt="I'm an image" title="I'm an image" data-bit="iit" tabindex="0"/><div class="a6S" dir="ltr" style="opacity: 0.01; left: 1036.6px; top: 759.15px;"><div id=":oa" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Download attachment " jslog="91252; u014N:cOuCgd,Kr2w4b,xr6bB; 4:WyIjbXNnLWY6MTc3MzQ5MzI4OTI4MjMwNTg3MCIsbnVsbCxbXV0." data-tooltip-class="a1V" data-tooltip="Download"><div class="akn"><div class="aSK J-J5-Ji aYr"></div></div></div></div></div>
 															</td>
 														</tr>
 													</tbody></table>
@@ -117,7 +117,7 @@ function PassLessTemp(JWT_TOKEN) {
 															<td style="padding-bottom:15px;padding-left:30px;padding-right:30px;padding-top:15px">
 																<div style="font-family:sans-serif">
 																	<div style="font-size:12px;font-family:Arial,Helvetica Neue,Helvetica,sans-serif;color:#6a6a6a;line-height:1.5">
-																		<p style="margin:0;font-size:14px;text-align:center;letter-spacing:normal"><span style="font-size:16px">All the best from<strong> the team @ updoc!</strong></span></p>
+																		<p style="margin:0;font-size:14px;text-align:center;letter-spacing:normal"><span style="font-size:16px">All the best from<strong> the team @ certnow!</strong></span></p>
 																	</div>
 																</div>
 															</td>
@@ -144,8 +144,8 @@ function PassLessTemp(JWT_TOKEN) {
 														<tbody><tr>
 															<td>
 																<div style="color:#6a6a6a;direction:ltr;font-family:Arial,Helvetica Neue,Helvetica,sans-serif;font-size:12px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center">
-																	<p style="margin:0;margin-bottom:16px">If you have any questions, please visit our&nbsp;<strong><a href="https://mandrillapp.com/track/click/31320415/updoc.freshdesk.com?p=eyJzIjoidXV5Y2ZtUUsybGJMZENzcHRMa05JcHlYdzJrIiwidiI6MSwicCI6IntcInVcIjozMTMyMDQxNSxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3VwZG9jLmZyZXNoZGVzay5jb21cXFwvc3VwcG9ydFxcXC9zb2x1dGlvbnNcIixcImlkXCI6XCI0NDc2MmIzMjc5OGM0NDU3YWFkMTc2OWE3MzBkYTUzMFwiLFwidXJsX2lkc1wiOltcIjYzOTg2ZmRmYTAyMjA3MzEyZWI2M2RkYzlkZGQ0NGViMDgwMzIxODRcIl19In0" style="text-decoration:underline;color:#211252" rel="noopener" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://mandrillapp.com/track/click/31320415/updoc.freshdesk.com?p%3DeyJzIjoidXV5Y2ZtUUsybGJMZENzcHRMa05JcHlYdzJrIiwidiI6MSwicCI6IntcInVcIjozMTMyMDQxNSxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3VwZG9jLmZyZXNoZGVzay5jb21cXFwvc3VwcG9ydFxcXC9zb2x1dGlvbnNcIixcImlkXCI6XCI0NDc2MmIzMjc5OGM0NDU3YWFkMTc2OWE3MzBkYTUzMFwiLFwidXJsX2lkc1wiOltcIjYzOTg2ZmRmYTAyMjA3MzEyZWI2M2RkYzlkZGQ0NGViMDgwMzIxODRcIl19In0&amp;source=gmail&amp;ust=1692098601834000&amp;usg=AOvVaw2emBdZe790itUEW1uf5hYM">FAQs</a>.</strong></p>
-																	<p style="margin:0">© 2023 updoc</p>
+																	<p style="margin:0;margin-bottom:16px">If you have any questions, please visit our&nbsp;<strong><a href="https://certnow.com.au/faqs" style="text-decoration:underline;color:#211252" rel="noopener" target="_blank">FAQs</a>.</strong></p>
+																	<p style="margin:0">© 2024 certnow</p>
 																</div>
 															</td>
 														</tr>
