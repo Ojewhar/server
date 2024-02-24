@@ -140,7 +140,15 @@ const getAllFormData = async (req, res) => {
     throw new Error("Error fetching form one data");
   }
 };
+// Function to get form one data based on user email
 
+const calcuAllForm = async (req, res) => {
+  try {
+    const res = await UpDocFormOne.find().select("forms");
+  } catch (error) {
+    res.status(500).json("Calculation Server Error");
+  }
+};
 // Function to get form one data based on user email
 const getFormOneData = async (req, res) => {
   try {
@@ -188,10 +196,31 @@ const updateSinglePatientForm = async (req, res) => {
     return res.status(500).json({ message: "Error updating form" });
   }
 };
+// update status by admin
+const deleteSinglePatientForm = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const form = await UpDocFormOne.findByIdAndDelete(id);
+    if (!form) {
+      return res
+        .status(404)
+        .json({ message: "This patient form is not available now" });
+    }
+
+    return res
+      .status(200)
+      .json({ form: form, message: `Medicale Certificate Form Is Deleted` });
+  } catch (error) {
+    console.error("Error updating form:", error);
+    return res.status(500).json({ message: "Error updating form" });
+  }
+};
 
 module.exports = {
   createFormOne,
   getFormOneData,
   getAllFormData,
   updateSinglePatientForm,
+  calcuAllForm,
+  deleteSinglePatientForm,
 };

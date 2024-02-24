@@ -51,7 +51,6 @@ const UpDocFormOneSchema = new mongoose.Schema(
     },
     payment: {
       type: {},
-      default: {},
     },
     status: {
       type: String,
