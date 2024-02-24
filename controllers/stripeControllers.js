@@ -49,7 +49,6 @@ const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const certnowPaymentStripe = async (req, res) => {
   const storeItems = new Map([
     [1, { priceInCent: 2900, name: "Medical Certificate" }],
-    // [2, { priceInCent: 4000, name: "Online Prescription" }],
   ]);
   try {
     const { id } = req.params;
