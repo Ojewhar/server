@@ -80,7 +80,7 @@ const certnowPaymentStripe = async (req, res) => {
       status: session.payment_status,
     };
     await formOne.save();
-    res.status(200).json(session);
+    res.status(200).json({ session: session });
   } catch (error) {
     res.status(500).send("Internal Server Error");
     console.log(error);
@@ -88,9 +88,9 @@ const certnowPaymentStripe = async (req, res) => {
 };
 
 const handlePaymentSuccess = async (req, res) => {
-  const { sessionId, paymentStatus } = req.body;
-
   try {
+    const { sessionId, paymentStatus } = req.body;
+
     if (paymentStatus === "success") {
       const formOne = await UpDocFormOne.findByIdAndUpdate(
         sessionId,
