@@ -23,8 +23,11 @@ const sendCertificateActiveMail = async (req, res) => {
       html: AcceptCertificate(fullname),
     };
 
+    // Send immediate response to the client
+    res.status(200).json({ message: "Form submitted successfully" });
+
     // Schedule the email to be sent after one hour
-    scheduleEmail(transporter, mailOptions, res);
+    scheduleEmail(transporter, mailOptions);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -32,23 +35,22 @@ const sendCertificateActiveMail = async (req, res) => {
 };
 
 // Function to schedule email sending after one hour
-const scheduleEmail = (transporter, mailOptions, res) => {
+const scheduleEmail = (transporter, mailOptions) => {
   const job = schedule.scheduleJob(
     new Date(Date.now() + 60 * 60 * 1000),
     () => {
-      sendEmail(transporter, mailOptions, res);
+      sendEmail(transporter, mailOptions);
     }
   );
 };
 
 // Function to send email
-const sendEmail = async (transporter, mailOptions, res) => {
+const sendEmail = async (transporter, mailOptions) => {
   try {
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Please check your email" });
+    console.log("Email sent successfully");
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).json({ error: "Failed to send email" });
   }
 };
 
