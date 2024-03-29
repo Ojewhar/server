@@ -36,12 +36,9 @@ const sendCertificateActiveMail = async (req, res) => {
 
 // Function to schedule email sending after one hour
 const scheduleEmail = (transporter, mailOptions) => {
-  const job = schedule.scheduleJob(
-    new Date(Date.now() + 59 * 60 * 1000),
-    () => {
-      sendEmail(transporter, mailOptions);
-    }
-  );
+  const job = schedule.scheduleJob(new Date(Date.now() + 1 * 60 * 1000), () => {
+    sendEmail(transporter, mailOptions);
+  });
 };
 
 // Function to send email
